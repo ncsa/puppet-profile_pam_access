@@ -1,0 +1,38 @@
+---
+lookup_options:
+  profile_pam_access::allow_rules:
+    merge: hash
+  profile_pam_access::deny_first_rules:
+    merge: hash
+  profile_pam_access::deny_rules:
+    merge: hash
+  profile_pam_access::pam_config:
+    merge: hash
+
+profile_pam_access::allow_rules:
+  "Allow root from cron":
+    user: root
+    origin: cron
+  "Allow root from crond":
+    user: root
+    origin: crond
+  "Allow root from localhost":
+    user: root
+    origin: 127.0.0.1
+  "Allow root from :0":
+    user: root
+    origin: ":0"
+  "Allow root from tty":
+    user: root
+    origin: tty
+profile_pam_access::deny_first_rules: {}
+profile_pam_access::deny_rules: {}
+profile_pam_access::pam_config:
+  "profile_pam_access Enforce access.conf in sshd":
+    ensure: present
+    service: sshd
+    type: account
+    control: required
+    module: pam_access.so
+    position: before module pam_nologin.so
+
