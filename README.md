@@ -3,7 +3,7 @@
 NCSA Common Puppet Profiles - base pam access config
 
 ## Dependencies
-- [MiamiOH/pam_access](https://forge.puppet.com/MiamiOH/pam_access)
+- [ncsa/pam_access](https://github.com/ncsa/puppet-pam_access.git)
 
 ## Reference
 

@@ -37,6 +37,8 @@ class profile_pam_access (
     Array[ String[1] ] $required_pkgs,
 ) {
 
+  include pam_access
+
     ### Make sure pam is installed
     ensure_packages( $required_pkgs )
 
