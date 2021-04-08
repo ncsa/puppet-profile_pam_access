@@ -1,5 +1,8 @@
 # profile_pam_access
 
+![pdk-validate](https://github.com/ncsa/profile_pam_access/workflows/pdk-validate/badge.svg)
+![yamllint](https://github.com/ncsa/profile_pam_access/workflows/yamllint/badge.svg)
+
 NCSA Common Puppet Profiles - base pam access config
 
 ## Dependencies
