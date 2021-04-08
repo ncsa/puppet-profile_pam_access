@@ -1,7 +1,7 @@
 # profile_pam_access
 
-![pdk-validate](https://github.com/ncsa/profile_pam_access/workflows/pdk-validate/badge.svg)
-![yamllint](https://github.com/ncsa/profile_pam_access/workflows/yamllint/badge.svg)
+[![pdk-validate](https://github.com/ncsa/puppet-profile_pam_access/actions/workflows/pdk-validate.yml/badge.svg)](https://github.com/ncsa/puppet-profile_pam_access/actions/workflows/pdk-validate.yml)
+[![yamllint](https://github.com/ncsa/puppet-profile_pam_access/actions/workflows/yamllint.yml/badge.svg)](https://github.com/ncsa/puppet-profile_pam_access/actions/workflows/yamllint.yml)
 
 NCSA Common Puppet Profiles - base pam access config
 
