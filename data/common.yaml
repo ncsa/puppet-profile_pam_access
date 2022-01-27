@@ -13,7 +13,10 @@ profile_pam_access::allow_rules:
   "root defaults":
     user: "root"
     origin: "cron crond 127.0.0.1 :0 tty"
-profile_pam_access::deny_first_rules: {}
+profile_pam_access::deny_first_rules:
+  "deny all_disabled_usr":
+    group: "all_disabled_usr"
+    origin: "ALL"
 profile_pam_access::deny_rules: {}
 profile_pam_access::pam_config:
   "profile_pam_access Enforce access.conf in sshd":
