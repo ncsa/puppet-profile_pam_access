@@ -1,0 +1,3 @@
+---
+profile_pam_access::required_pkgs:
+  - "pam"
