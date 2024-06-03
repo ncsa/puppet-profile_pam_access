@@ -30,54 +30,51 @@
 # @example
 #   include profile_pam_access
 class profile_pam_access (
-    Hash $allow_rules,
-    Hash $deny_rules,
-    Hash $deny_first_rules,
-    Hash $pam_config,
-    Array[ String[1] ] $required_pkgs,
+  Hash $allow_rules,
+  Hash $deny_rules,
+  Hash $deny_first_rules,
+  Hash $pam_config,
+  Array[String[1]] $required_pkgs,
 ) {
-
   include pam_access
 
-    ### Make sure pam is installed
-    ensure_packages( $required_pkgs )
+  ### Make sure pam is installed
+  ensure_packages( $required_pkgs )
 
-    ### Configure access.conf
+  ### Configure access.conf
 
-    pam_access::entry { 'Default Allow':
-        user       => 'root',
-        origin     => 'LOCAL',
-        permission => '+',
-        position   => 'before',
+  pam_access::entry { 'Default Allow':
+    user       => 'root',
+    origin     => 'LOCAL',
+    permission => '+',
+    position   => 'before',
+  }
+
+  pam_access::entry { 'Default Deny':
+    user       => 'ALL',
+    origin     => 'ALL',
+    permission => '-',
+    position   => 'after',
+  }
+
+  ensure_resources( 'pam_access::entry', $allow_rules,
+    { 'permission' => '+',
+      'position'   => '-1',
     }
+  )
 
-    pam_access::entry { 'Default Deny':
-        user       => 'ALL',
-        origin     => 'ALL',
-        permission => '-',
-        position   => 'after',
+  ensure_resources( 'pam_access::entry', $deny_rules,
+    { 'permission' => '-',
+      'position'   => 'after',
     }
+  )
 
-    ensure_resources( 'pam_access::entry', $allow_rules,
-        { 'permission' => '+',
-          'position'   => '-1',
-        }
-    )
+  ensure_resources( 'pam_access::entry', $deny_first_rules,
+    { 'permission' => '-',
+      'position'   => 'before',
+    }
+  )
 
-    ensure_resources( 'pam_access::entry', $deny_rules,
-        { 'permission' => '-',
-          'position'   => 'after',
-        }
-    )
-
-    ensure_resources( 'pam_access::entry', $deny_first_rules,
-        { 'permission' => '-',
-          'position'   => 'before',
-        }
-    )
-
-    ### Configure pam
-    ensure_resources( 'pam', $pam_config )
-
+  ### Configure pam
+  ensure_resources( 'pam', $pam_config )
 }
-
