@@ -14,6 +14,9 @@ profile_pam_access::allow_rules:
     user: "root"
     origin: "cron crond 127.0.0.1 :0 tty"
 profile_pam_access::deny_first_rules:
+  "ALL deny for cron":
+    user: "ALL"
+    origin: "cron crond"
   "deny all_disabled_usr":
     group: "all_disabled_usr"
     origin: "ALL"

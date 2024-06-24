@@ -41,14 +41,6 @@ class profile_pam_access (
   ### Make sure pam is installed
   ensure_packages( $required_pkgs )
 
-  ### Configure access.conf
-
-  pam_access::entry { 'Default Allow':
-    user       => 'root',
-    origin     => 'LOCAL',
-    permission => '+',
-    position   => 'before',
-  }
 
   pam_access::entry { 'Default Deny':
     user       => 'ALL',
@@ -74,6 +66,12 @@ class profile_pam_access (
       'position'   => 'before',
     }
   )
+  -> pam_access::entry { 'Default Allow':
+    user       => 'root',
+    origin     => 'LOCAL',
+    permission => '+',
+    position   => 'before',
+  }
 
   ### Configure pam
   ensure_resources( 'pam', $pam_config )
