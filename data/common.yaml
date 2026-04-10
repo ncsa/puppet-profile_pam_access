@@ -30,10 +30,16 @@ profile_pam_access::pam_config:
     ensure: "present"
     service: "sshd"
     type: "account"
-    control: "[success=1 default=ignore]"
+    control: "include"
+    module: "sshd-ansible-qualys"
+    position: "after module pam_access.so"
+  "add sshd-ansible-qualys service":
+    ensure: "present"
+    service: "sshd-ansible-qualys"
+    type: "account"
+    control: "sufficient"
     module: "pam_succeed_if.so"
     arguments:
       - "user"
       - "ingroup"
       - "ansible:qualys"
-    position: "after module pam_access.so"
