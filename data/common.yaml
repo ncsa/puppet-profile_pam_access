@@ -43,3 +43,4 @@ profile_pam_access::pam_config:
       - "user"
       - "ingroup"
       - "ansible:qualys"
+      - "quiet_fail"
